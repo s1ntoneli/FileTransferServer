@@ -7,9 +7,22 @@ var fs = require('fs');
 var callfile = require('child_process');
 var request = require('request');
 
+function getHostName(uri) {
+    if (uri == undefined) {
+        return null;
+    }
+	var parsedUrl = url.parse(uri);
+    if (parsedUrl == null || parsedUrl == "" || parsedUrl == undefined) {
+        return null;
+    }
+
+    return parsedUrl.protocol + '//' + parsedUrl.host;
+}
+
 router.get('/', function(req, res, next) {
-	var imgUrl = url.parse(req.url, true).query.url;
-    console.log(url.parse(req.url,true).query); 
+    var query = url.parse(req.url, true).query;
+	var imgUrl = query.url;
+    console.log(query);
 
     console.log('get a request for ' + imgUrl);
     if (imgUrl == null || imgUrl == "" || imgUrl == undefined) {
@@ -18,8 +31,10 @@ router.get('/', function(req, res, next) {
     	return;
     }
 
-    var parsedUrl = url.parse(imgUrl);
-    var referrer = parsedUrl.protocol + '//' + parsedUrl.host;
+    var referrer = getHostName(query.srcUrl);
+    if (referrer == null) {
+        referrer = getHostName(imgUrl);
+    }
     console.log('referrer ' + referrer);
 
 	var options = {
