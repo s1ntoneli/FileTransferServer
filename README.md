@@ -7,7 +7,7 @@
 <pre>
 接口:
 
-codeli.leancloud.cn:3000/image?url=xxx&srcUrl=xxx
+codeli.leancloud.cn/image?url=xxx&srcUrl=xxx
 
 参数:
 url: 图片 url。必选。
