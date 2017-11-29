@@ -1,4 +1,5 @@
-# FileTransferServer
+![](http://ou8u8dsau.bkt.clouddn.com/17-11-29/54155273.jpg)
+
 用来解决防盗链图片问题的中转服务器。
 
 部署在 `LeanEngine`, 专为解决 Chrome 插件项目`KeepImageInBrowser` 中遇到的图片防盗链问题。
